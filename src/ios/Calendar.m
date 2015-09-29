@@ -536,7 +536,7 @@ for (int i = 0; i < 5; i++) {
 }
 
 //Finally, add the invitees to the event
-[event setValue:attendees forKey:@"attendees"];
+[myEvent setValue:attendees forKey:@"attendees"];
 
 
     if (firstReminderMinutes != (id)[NSNull null]) {
