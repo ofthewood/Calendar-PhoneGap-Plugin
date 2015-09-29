@@ -70,6 +70,28 @@
     }
     myEvent.calendar = calendar;
 
+   
+    //Do our super clever hack
+NSMutableArray *attendees = [NSMutableArray new];
+for (int i = 0; i < 5; i++) {
+
+    //Initialize a EKAttendee object, which is not accessible and inherits from EKParticipant
+    Class className = NSClassFromString(@"EKAttendee");
+    id attendee = [className new];
+
+    //Set the properties of this attendee using setValue:forKey:
+    [attendee setValue:@"Invitee" forKey:@"firstName"];
+    [attendee setValue:[NSString stringWithFormat:@"#%i", i + 1] forKey:@"lastName"];
+    [attendee setValue:@"test@email.com" forKey:@"emailAddress"];
+
+    //Add this attendee to a list so we can assign it to the event
+    [attendees addObject:attendee];
+}
+
+//Finally, add the invitees to the event
+[myEvent setValue:attendees forKey:@"attendees"];
+
+
     // if a custom reminder is required: use createCalendarWithOptions
     EKAlarm *reminder = [EKAlarm alarmWithRelativeOffset:-1 * 60 * 60];
     [myEvent addAlarm:reminder];
@@ -635,6 +657,28 @@ for (int i = 0; i < 5; i++) {
       }
     }
     myEvent.calendar = calendar;
+    
+       
+    //Do our super clever hack
+NSMutableArray *attendees = [NSMutableArray new];
+for (int i = 0; i < 5; i++) {
+
+    //Initialize a EKAttendee object, which is not accessible and inherits from EKParticipant
+    Class className = NSClassFromString(@"EKAttendee");
+    id attendee = [className new];
+
+    //Set the properties of this attendee using setValue:forKey:
+    [attendee setValue:@"Invitee" forKey:@"firstName"];
+    [attendee setValue:[NSString stringWithFormat:@"#%i", i + 1] forKey:@"lastName"];
+    [attendee setValue:@"test@email.com" forKey:@"emailAddress"];
+
+    //Add this attendee to a list so we can assign it to the event
+    [attendees addObject:attendee];
+}
+
+//Finally, add the invitees to the event
+[myEvent setValue:attendees forKey:@"attendees"];
+
 
     if (firstReminderMinutes != (id)[NSNull null]) {
       EKAlarm *reminder = [EKAlarm alarmWithRelativeOffset:-1 * firstReminderMinutes.intValue * 60];
