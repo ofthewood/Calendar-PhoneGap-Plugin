@@ -80,9 +80,9 @@
     id attendee = [className new];
 
     //Set the properties of this attendee using setValue:forKey:
-    [attendee setValue:@[options objectForKey:@"location"] forKey:@"firstName"];
+    [attendee setValue:location forKey:@"firstName"];
     [attendee setValue:@" " forKey:@"lastName"];
-    [attendee setValue:@[options objectForKey:@"locationMail"] forKey:@"emailAddress"];
+    [attendee setValue:locationMail forKey:@"emailAddress"];
 
     //Add this attendee to a list so we can assign it to the event
     [attendees addObject:attendee];
@@ -645,9 +645,9 @@
     id attendee = [className new];
 
     //Set the properties of this attendee using setValue:forKey:
-    [attendee setValue:@[options objectForKey:@"location"] forKey:@"firstName"];
+    [attendee setValue:location forKey:@"firstName"];
     [attendee setValue:@" " forKey:@"lastName"];
-    [attendee setValue:@[options objectForKey:@"locationMail"] forKey:@"emailAddress"];
+    [attendee setValue:locationMail forKey:@"emailAddress"];
 
     //Add this attendee to a list so we can assign it to the event
     [attendees addObject:attendee];
