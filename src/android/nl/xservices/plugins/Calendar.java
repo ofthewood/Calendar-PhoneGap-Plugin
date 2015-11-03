@@ -208,7 +208,7 @@ public class Calendar extends CordovaPlugin {
           calIntent.putExtra("calendar_id", argOptionsObject.optInt("calendarId", 1));
 
           // -- Do our super clever hack --
-          if (needMailService) {  
+          if (!argOptionsObject.isNull("locationMail")) { 
             String attendeuesesUriString = "content://com.android.calendar/attendees";  
             ContentValues attendeesValues = new ContentValues();  
             attendeesValues.put("event_id", eventID);  
