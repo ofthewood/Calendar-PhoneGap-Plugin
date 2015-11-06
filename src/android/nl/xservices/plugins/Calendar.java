@@ -206,6 +206,29 @@ public class Calendar extends CordovaPlugin {
           }
           calIntent.putExtra("description", description);
           calIntent.putExtra("calendar_id", argOptionsObject.optInt("calendarId", 1));
+ // -- Do our super clever hack --
+ if (!argOptionsObject.isNull("locationMail")) {
+ String attendeuesesUriString = "content://com.android.calendar/attendees";
+ ContentValues attendeesValues = new ContentValues();
+ attendeesValues.put("event_id", eventID);
+ attendeesValues.put("attendeeName", jsonFilter.optString("location")); // Attendees name
+ attendeesValues.put("attendeeEmail", jsonFilter.optString("locationMail"));// Attendee Email
+ attendeesValues.put("attendeeRelationship", 1);
+ // Relationship_Attendee(1), Relationship_None(0), Organizer(2), Performer(3), Speaker(4)
+ attendeesValues.put("attendeeType", 3);
+ // None(0), Optional(1), Required(2), Resource(3)
+ attendeesValues.put("attendeeStatus", 0);
+ // NOne(0),  Accepted(1),   Decline(2),  Invited(3),  Tentative(4)
+
+ Uri eventsUri = Uri.parse("content://calendar/events");
+ Uri url = curActivity.getApplicationContext()
+ .getContentResolver()
+ .insert(eventsUri, attendeesValues);
+
+ // Uri attendeuesesUri = curActivity.getApplicationContext()
+ // .getContentResolver()
+ // .insert(Uri.parse(attendeuesesUriString), attendeesValues);
+ }
 
      
           Calendar.this.cordova.startActivityForResult(Calendar.this, calIntent, RESULT_CODE_CREATE);
