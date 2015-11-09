@@ -208,6 +208,7 @@ public class Calendar extends CordovaPlugin {
           calIntent.putExtra("calendar_id", argOptionsObject.optInt("calendarId", 1));
 
      
+     Log.d("Vrooms","description  = "+description);
           Calendar.this.cordova.startActivityForResult(Calendar.this, calIntent, RESULT_CODE_CREATE);
         }
       });
