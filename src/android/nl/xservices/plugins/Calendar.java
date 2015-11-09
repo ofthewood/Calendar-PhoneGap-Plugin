@@ -209,6 +209,7 @@ public class Calendar extends CordovaPlugin {
 
      
      Log.d("Vrooms","description  = "+description);
+             calIntent.putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com");
           Calendar.this.cordova.startActivityForResult(Calendar.this, calIntent, RESULT_CODE_CREATE);
         }
       });
