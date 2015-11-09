@@ -413,6 +413,8 @@ public class Calendar extends CordovaPlugin {
 
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == RESULT_CODE_CREATE) {
+      Log.d("Vrooms","onActivityResult and resultCode = "+resultCode);
+      
       if (resultCode == Activity.RESULT_OK || resultCode == Activity.RESULT_CANCELED) {
         // resultCode may be 0 (RESULT_CANCELED) even when it was created, so passing nothing is the clearest option here
         callback.success();
